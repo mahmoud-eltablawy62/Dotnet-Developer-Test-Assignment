@@ -127,7 +127,7 @@ A background service runs every 5 minutes to:
 
 This project uses a third-party IP geolocation service such as:
 
-* https://ipapi.co/
+
 * https://ipgeolocation.io/
 
 > API Key should be configured in `appsettings.json`
