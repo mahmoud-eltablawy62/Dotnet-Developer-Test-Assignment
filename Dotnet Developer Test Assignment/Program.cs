@@ -33,10 +33,10 @@ namespace Dotnet_Developer_Test_Assignment
                 app.UseSwaggerUI();
             }
 
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

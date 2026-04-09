@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Dotnet Developer Test Assignment")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b3b2938c66b3647feee1902a1fa87e1eaa2bbbb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Dotnet Developer Test Assignment")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Dotnet Developer Test Assignment")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

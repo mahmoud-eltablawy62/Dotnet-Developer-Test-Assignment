@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hello\\Desktop\\Login\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj": {}
+    "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hello\\Desktop\\Login\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj": {
+    "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj",
+        "projectUniqueName": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj",
         "projectName": "Dotnet Developer Test Assignment",
-        "projectPath": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj",
+        "projectPath": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj",
         "packagesPath": "C:\\Users\\Hello\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet Developer Test Assignment\\obj\\",
+        "outputPath": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\Dotnet Developer Test Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hello\\AppData\\Roaming\\NuGet\\NuGet.Config",

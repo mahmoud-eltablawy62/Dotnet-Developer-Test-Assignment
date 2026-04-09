@@ -42,44 +42,50 @@ namespace Dotnet_Developer_Test_Assignment.Controllers
         [HttpDelete("block/{code}")]
         public IActionResult UnblockCountry(string code)
         {
-            if (!_repository.Exists(code))
-                return NotFound("Country not found in blocked list");
+            var deleted = _repository.Remove(code);
 
-            var removed = _repository.Remove(code);
+            if (!deleted)
+            {
 
-            if (!removed)
-                return StatusCode(500, "Failed to unblock country");
+                return NotFound(new { Message = $"Country with code '{code}' is not found in the blocked list." });
+            }
 
-            return Ok(new { Message = $"{code.ToUpper()} unblocked successfully" });
+            return Ok(new { Message = $"Country '{code}' has been unblocked successfully." });
         }
 
-       
+
+
         [HttpGet("blocked")]
         public IActionResult GetBlockedCountries([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string? search = null)
         {
-            var countries = _repository.GetAll();
+            
+            page = page < 1 ? 1 : page;
+            pageSize = pageSize < 1 ? 10 : pageSize;
 
+            var query = _repository.GetAll().AsQueryable();
+
+            
             if (!string.IsNullOrWhiteSpace(search))
             {
-                search = search.ToUpper();
-                countries = countries.Where(c =>
-                    c.Code.ToUpper().Contains(search) ||
-                    c.Name.ToUpper().Contains(search)
-                );
+              
+                query = query.Where(c =>
+                    c.Code.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                    c.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
             }
 
-            var totalItems = countries.Count();
-            var items = countries
+            var totalItems = query.Count();
+            var items = query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
             return Ok(new
             {
-                page,
-                pageSize,
-                totalItems,
-                items
+                TotalItems = totalItems,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = (int)Math.Ceiling((double)totalItems / pageSize),
+                Items = items
             });
         }
 

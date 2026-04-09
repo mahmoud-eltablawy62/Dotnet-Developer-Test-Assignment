@@ -1396,11 +1396,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hello\\Desktop\\Login\\TestProject\\TestProject.csproj",
+      "projectUniqueName": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\TestProject\\TestProject.csproj",
       "projectName": "TestProject",
-      "projectPath": "C:\\Users\\Hello\\Desktop\\Login\\TestProject\\TestProject.csproj",
+      "projectPath": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\TestProject\\TestProject.csproj",
       "packagesPath": "C:\\Users\\Hello\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hello\\Desktop\\Login\\TestProject\\obj\\",
+      "outputPath": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\TestProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Hello\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1418,8 +1418,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Hello\\Desktop\\Login\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj": {
-              "projectPath": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj"
+            "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj": {
+              "projectPath": "C:\\Users\\Hello\\Desktop\\Login\\Dotnet-Developer-Test-Assignment\\Dotnet Developer Test Assignment\\Dotnet Developer Test Assignment.csproj"
             }
           }
         }

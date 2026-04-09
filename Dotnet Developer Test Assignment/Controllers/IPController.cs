@@ -23,7 +23,17 @@ namespace Dotnet_Developer_Test_Assignment.Controllers
         [HttpGet("lookup")]
         public async Task<IActionResult> Lookup([FromQuery] string? ipAddress)
         {
-            
+            if (string.IsNullOrWhiteSpace(ipAddress))
+            {
+                ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+            }
+
+
+            if (string.IsNullOrWhiteSpace(ipAddress) || !System.Net.IPAddress.TryParse(ipAddress, out _))
+            {
+                return BadRequest(new { Message = "Invalid IP Address format." });
+            }
+
             var ipInfo = await _ipService.LookupIpAsync(ipAddress);
 
             if (ipInfo == null)
@@ -35,47 +45,49 @@ namespace Dotnet_Developer_Test_Assignment.Controllers
         [HttpGet("check-block")]
         public async Task<IActionResult> CheckBlock([FromQuery] string? ipAddress)
         {
-
             if (string.IsNullOrWhiteSpace(ipAddress))
             {
                 ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
             }
 
-         
-            var ipInfo = await _ipService.LookupIpAsync(ipAddress);
-            if (ipInfo == null)
-                return StatusCode(500, "Failed to lookup IP");
-
-            
-            bool isBlocked = _countryRepo.Exists(ipInfo.CountryCode);
+           
+            if (string.IsNullOrWhiteSpace(ipAddress) || !System.Net.IPAddress.TryParse(ipAddress, out _))
+            {
+                return BadRequest(new { Message = "Invalid IP Address format." });
+            }
 
            
+            var ipInfo = await _ipService.LookupIpAsync(ipAddress);
+            if (ipInfo == null)
+            {
+                return StatusCode(503, new { Message = "External Geolocation API is unavailable." });
+            }
+            bool isBlocked = _countryRepo.Exists(ipInfo.CountryCode);
             var log = new BlockedAttemptLog
             {
-                IpAddress = ipInfo.IpAddress,
-                CountryCode = ipInfo.CountryCode,
-                IsBlocked = isBlocked,
-                UserAgent = Request.Headers["User-Agent"].ToString(),
-                Timestamp = DateTime.UtcNow
+                IpAddress = ipInfo.IpAddress ?? ipAddress,
+                Timestamp = DateTime.UtcNow,               
+                CountryCode = ipInfo.CountryCode,         
+                IsBlocked = isBlocked,                   
+                UserAgent = Request.Headers["User-Agent"].ToString() 
             };
             _logRepo.Add(log);
-
-
             return Ok(new
             {
                 ipInfo.IpAddress,
                 ipInfo.CountryCode,
                 ipInfo.CountryName,
-                isBlocked
+                IsBlocked = isBlocked
             });
         }
 
-
         [HttpGet("blocked-attempts")]
-        public IActionResult GetBlockedAttempts(
-       [FromQuery] int page = 1,
-       [FromQuery] int pageSize = 10)
+        public IActionResult GetBlockedAttempts([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
+            page = page < 1 ? 1 : page;
+            pageSize = pageSize < 1 ? 10 : pageSize;
+
+           
             var allLogs = _logRepo.GetAll().OrderByDescending(l => l.Timestamp);
 
             var totalItems = allLogs.Count();
@@ -86,10 +98,11 @@ namespace Dotnet_Developer_Test_Assignment.Controllers
 
             return Ok(new
             {
-                page,
-                pageSize,
-                totalItems,
-                items
+                TotalItems = totalItems,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = (int)Math.Ceiling((double)totalItems / pageSize),
+                Items = items
             });
         }
     }
