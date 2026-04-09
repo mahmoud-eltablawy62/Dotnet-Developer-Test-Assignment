@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Dotnet Developer Test Assignment.props" />
+</Project>
